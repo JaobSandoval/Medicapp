@@ -1,0 +1,106 @@
+.circles-page {
+  padding: 2rem 0;
+}
+
+.circles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.circles-header h1 {
+  font-size: 1.75rem;
+  color: var(--gray-800);
+}
+
+.circles-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.circles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.circle-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.circle-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+.circle-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.circle-icon {
+  font-size: 2rem;
+}
+
+.circle-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 0.5rem;
+}
+
+.circle-patient {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray-600);
+  margin-bottom: 0.5rem;
+}
+
+.circle-code {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  font-family: monospace;
+}
+
+.code-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--gray-100);
+  padding: 1rem;
+  border-radius: var(--radius);
+  margin: 1rem 0;
+}
+
+.code-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 2px;
+  color: var(--primary);
+}
+
+@media (max-width: 640px) {
+  .circles-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .circles-actions {
+    flex-direction: column;
+  }
+}
