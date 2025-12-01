@@ -25,6 +25,16 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .circle-card {
@@ -33,14 +43,70 @@
   padding: 1.5rem;
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
+  animation: cardSlideIn 0.5s ease-out backwards;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animación escalonada para cada tarjeta */
+.circle-card:nth-child(1) { animation-delay: 0.1s; }
+.circle-card:nth-child(2) { animation-delay: 0.2s; }
+.circle-card:nth-child(3) { animation-delay: 0.3s; }
+.circle-card:nth-child(4) { animation-delay: 0.4s; }
+.circle-card:nth-child(5) { animation-delay: 0.5s; }
+.circle-card:nth-child(6) { animation-delay: 0.6s; }
+.circle-card:nth-child(n+7) { animation-delay: 0.7s; }
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Efecto de brillo al pasar el mouse */
+.circle-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(99, 102, 241, 0.1) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  transition: all 0.6s;
+  opacity: 0;
+}
+
+.circle-card:hover::before {
+  opacity: 1;
+  animation: shine 0.6s ease-out;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
 }
 
 .circle-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary-light);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: var(--primary);
 }
 
 .circle-card-header {
@@ -52,6 +118,22 @@
 
 .circle-icon {
   font-size: 2rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.circle-card:hover .circle-icon {
+  transform: rotate(10deg) scale(1.1);
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(10deg) scale(1.1);
+  }
+  50% {
+    transform: translateY(-5px) rotate(10deg) scale(1.1);
+  }
 }
 
 .circle-name {
@@ -92,6 +174,32 @@
   font-family: monospace;
   letter-spacing: 2px;
   color: var(--primary);
+  animation: codePulse 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes codePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Animación para el botón de copiar */
+.code-display button {
+  transition: all 0.3s ease;
+}
+
+.code-display button:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.code-display button:active {
+  transform: scale(0.95);
 }
 
 @media (max-width: 640px) {
